@@ -24,14 +24,20 @@ class Router
     public function run()
     {
         if ($this->match()) {
-            $controller = 'application\controllers\\' . ucfirst($this->params['controller']) . 'Controller.php';
-            if (class_exists($controller)) {
-                echo 'ok';
+            $path = 'application\controllers\\' . ucfirst($this->params['controller']) . 'Controller';
+            if (class_exists($path)) {
+                $action = $this->params['action'] . 'Action';
+                if (method_exists($path, $action)) {
+                    $controller = new $path($this->params);
+                    $controller->$action();
+                } else {
+                    echo 'no action ' . $action;
+                }
             } else {
-                echo 'No class' . $controller;
+                echo 'No class ' . $path;
             }
         } else {
-            echo 'No route';
+            echo 'No route ';
         }
     }
 
