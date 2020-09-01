@@ -8,7 +8,14 @@ class MainController extends Controller
 {
     public function indexAction()
     {
-        echo 'main page';
+        $vars = [
+            'name' => 'Person',
+            'age' => 88,
+            'array'=>[1,2,3],
+
+        ];
+
+        $this->view->render('mainPage', $vars);
     }
 
 

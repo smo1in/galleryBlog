@@ -31,13 +31,13 @@ class Router
                     $controller = new $path($this->params);
                     $controller->$action();
                 } else {
-                    echo 'no action ' . $action;
+                    View::errorCode(404);
                 }
             } else {
-                echo 'No class ' . $path;
+                View::errorCode(404);
             }
         } else {
-            echo 'No route ';
+            View::errorCode(404);
         }
     }
 
