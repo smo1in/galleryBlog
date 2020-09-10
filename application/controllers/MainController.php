@@ -3,6 +3,7 @@
 namespace application\controllers;
 
 use application\core\Controller;
+use application\lib\Db;
 
 class MainController extends Controller
 {
@@ -14,6 +15,8 @@ class MainController extends Controller
             'array'=>[1,2,3],
 
         ];
+
+        $db= new Db;
 
         $this->view->render('mainPage', $vars);
     }
