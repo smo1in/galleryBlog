@@ -12,12 +12,17 @@ class MainController extends Controller
         $vars = [
             'name' => 'Person',
             'age' => 88,
-            'array'=>[1,2,3],
+            'array' => [1, 2, 3],
 
         ];
 
-        $db= new Db;
-
+        $db = new Db;
+        $form = '1,DELETE from users';
+        $params = [
+            'id' => $form,
+        ];
+        $data = $db->column('SELECT name FROM users WHERE id = :id', $params);
+        debug($data);
         $this->view->render('mainPage', $vars);
     }
 
